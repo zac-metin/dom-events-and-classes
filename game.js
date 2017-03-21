@@ -1,5 +1,5 @@
-// Don't change or delete this line! It waits until the DOM has loaded, then calls 
-// the start function. More info: 
+// Don't change or delete this line! It waits until the DOM has loaded, then calls
+// the start function. More info:
 // https://developer.mozilla.org/en-US/docs/Web/Events/DOMContentLoaded
 document.addEventListener('DOMContentLoaded', start)
 
@@ -12,6 +12,8 @@ function bindEventListeners (dots) {
     // BIND YOUR EVENT LISTENERS HERE
     // The first one is provided for you
     dots[i].addEventListener('contextmenu', makeGreen)
+    dots[i].addEventListener('click', makeBlue)
+    dots[i].addEventListener('dblclick', hide)
   }
 }
 
@@ -21,9 +23,20 @@ function makeGreen (evt) {
   updateCounts()
 }
 
-// CREATE FUNCTION makeBlue HERE
+function makeBlue (evt) {
+  evt.target.classList.toggle('blue')
+  updateCounts()
+}
+function hide (evt) {
+  evt.target.classList.toggle('invisble')
+}
 
-// CREATE FUNCTION hide HERE
+var dotarray = new Array ();
+for (y=0; y<10;y++)
+{
+dotarray[y] = document.getElementsByClassName('board.children'[y]);
+}
+console.log(dotarray[0])
 
 function updateCounts () {
   var totals = {
@@ -31,8 +44,25 @@ function updateCounts () {
     green: 0,
     invisible: 0
   }
-  
-  // WRITE CODE HERE TO COUNT BLUE, GREEN, AND INVISIBLE DOTS
+  for (i=0; i<10;i++)
+  {
+    if (dotarray[i].classList.contains='blue')
+    {
+      totals.blue ++;
+      alert("Hello!");
+    }
+    else if (dotarray[i].classList.contains='green')
+    {
+    totals.green ++;
+    }
+    else if (dotarray[i].classList.contains="invisible"){
+      totals.invisible ++;
+    }
+    else {
+      alert('Error!');
+    }
+  }
+
 
   // Once you've done the counting, this function will update the display
   displayTotals(totals)
