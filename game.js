@@ -32,7 +32,7 @@ function makeBlue (evt) {
   updateCounts()
 }
 function makeInvisible (evt) {
-  evt.target.classList.toggle('invisble')
+  evt.target.classList.toggle('invisible')
   evt.target.classList.remove('blue')
   evt.target.classList.remove('green')
   updateCounts()
@@ -47,7 +47,7 @@ function updateCounts () {
 
 var dtAry = document.getElementsByClassName('board')[0].children;
 
-  for (i=0; i<dtAry.length;i++){
+  for (i=0; i < dtAry.length;i++){
     if (dtAry[i].classList.contains('blue'))
     {
       totals.blue ++;
