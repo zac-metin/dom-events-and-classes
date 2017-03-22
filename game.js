@@ -13,30 +13,30 @@ function bindEventListeners (dots) {
     // The first one is provided for you
     dots[i].addEventListener('contextmenu', makeGreen)
     dots[i].addEventListener('click', makeBlue)
-    dots[i].addEventListener('dblclick', hide)
+    dots[i].addEventListener('dblclick', makeInvisible)
   }
 }
 
 function makeGreen (evt) {
   evt.preventDefault()
   evt.target.classList.toggle('green')
+  evt.target.classList.remove('blue')
+  evt.target.classList.remove('invisible')
   updateCounts()
 }
 
 function makeBlue (evt) {
   evt.target.classList.toggle('blue')
+  evt.target.classList.remove('green')
+  evt.target.classList.remove('invisible')
   updateCounts()
 }
-function hide (evt) {
+function makeInvisible (evt) {
   evt.target.classList.toggle('invisble')
+  evt.target.classList.remove('blue')
+  evt.target.classList.remove('green')
+  updateCounts()
 }
-
-var dotarray = new Array ();
-for (y=0; y<10;y++)
-{
-dotarray[y] = document.getElementsByClassName('board.children'[y]);
-}
-console.log(dotarray[0])
 
 function updateCounts () {
   var totals = {
@@ -44,22 +44,25 @@ function updateCounts () {
     green: 0,
     invisible: 0
   }
-  for (i=0; i<10;i++)
-  {
-    if (dotarray[i].classList.contains='blue')
+
+var dtAry = document.getElementsByClassName('board')[0].children;
+
+  for (i=0; i<dtAry.length;i++){
+    if (dtAry[i].classList.contains('blue'))
     {
       totals.blue ++;
-      alert("Hello!");
     }
-    else if (dotarray[i].classList.contains='green')
+    else if (dtAry[i].classList.contains('green'))
     {
-    totals.green ++;
+      //dtAry[i].classList.remove('blue')
+      //dtAry[i].classList.remove('invisible')
+      totals.green ++;
     }
-    else if (dotarray[i].classList.contains="invisible"){
+    else if (dtAry[i].classList.contains('invisible'))
+    {
+      //dtAry[i].classList.remove('blue')
+      //dtAry[i].classList.remove('green')
       totals.invisible ++;
-    }
-    else {
-      alert('Error!');
     }
   }
 
